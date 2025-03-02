@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +32,7 @@ DEBUG = bool(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = ["*"]
 # os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
-CSRF_TRUSTED_ORIGINS = ['http://167.71.140.38:1337', 'http://127.0.0.1:1337']
+CSRF_TRUSTED_ORIGINS = ['http://167.71.140.38:1337', 'http://127.0.0.1:1337', 'http://192.168.1.151:1337']
 
 # Application definition
 
@@ -45,7 +48,8 @@ INSTALLED_APPS = [
 
     'ectUser',
     'patient',
-    'referral'
+    'referral',
+    'progress_notes'
 ]
 
 MIDDLEWARE = [

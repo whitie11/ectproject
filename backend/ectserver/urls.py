@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include('ectUser.urls')),
     path('patient/', include('patient.urls')),
-    path('referral/', include('referral.urls'))
+    path('referral/', include('referral.urls')),
+    path('notes/', include('progress_notes.urls'))
 ]

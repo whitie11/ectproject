@@ -6,7 +6,8 @@ from rest_framework import status
 from referral import serializers
 from patient.models import Patient
 from referral.models import Referral
-from referral.serializers import ReferralSerializer, ReferralTemp2Serializer
+from referral.serializers import ReferralSerializer
+from progress_notes.serializers import ProgressNotesSerializer
 
 # Create your views here.
 
@@ -28,18 +29,29 @@ class ReferralView(APIView):
 class ReferralSave(APIView):
     # permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
-        patient_id = request.data.get('patient_id')
+        # patient_id = request.data.get('patient_id')
         # patient = Patient.objects.get(pk=patient_id)
         newReferral = {
-            'patient_id': patient_id,
+            'patient_id': request.data.get('patient_id'),
             'referrer': request.data.get("referrer"),
             'referrer_email': request.data.get("referrer_email"),
             'reason': request.data.get("reason"),
         }
 
-        serializer = ReferralTemp2Serializer(data=newReferral)
+        serializer = ReferralSerializer(data=newReferral)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            newNote = {
+                'referral_id': serializer.data.get('referral_id'),
+                'author_id': request.data.get('author_id'),
+                'note': "New referal made"
+            }
+            noteSerializer = ProgressNotesSerializer(data=newNote)
+            if noteSerializer.is_valid():
+                noteSerializer.save()
+            else:
+                return JsonResponse(noteSerializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
+
+        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

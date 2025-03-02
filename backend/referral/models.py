@@ -33,31 +33,31 @@ class Referral(models.Model):
         return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
 
 
-class ReferralTemp(models.Model):
-    referral_id = models.BigAutoField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.RESTRICT)
-    referrer = models.CharField(max_length=20)
-    referrer_email = models.CharField(max_length=50)
-    reason = models.TextField()
-    stage = models.CharField(max_length=2, choices=ReferralStage.choices, default=ReferralStage.PENDING)
-    isOpen = models.BooleanField(default=True)
-    date_started = models.DateField(default=date.today)
-    date_closed = models.DateField(blank=True, null=True)
+# class ReferralTemp(models.Model):
+#     referral_id = models.BigAutoField(primary_key=True)
+#     patient = models.ForeignKey(Patient, on_delete=models.RESTRICT)
+#     referrer = models.CharField(max_length=20)
+#     referrer_email = models.CharField(max_length=50)
+#     reason = models.TextField()
+#     stage = models.CharField(max_length=2, choices=ReferralStage.choices, default=ReferralStage.PENDING)
+#     isOpen = models.BooleanField(default=True)
+#     date_started = models.DateField(default=date.today)
+#     date_closed = models.DateField(blank=True, null=True)
 
-    def __str__(self):
-        return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
+#     def __str__(self):
+#         return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
 
 
-class ReferralTemp2(models.Model):
-    referral_id = models.BigAutoField(primary_key=True)
-    patient = models.ForeignKey(Patient, on_delete=models.RESTRICT)
-    referrer = models.CharField(max_length=20)
-    referrer_email = models.CharField(max_length=50)
-    reason = models.TextField()
-    stage = models.CharField(max_length=2, choices=ReferralStage.choices, default=ReferralStage.PENDING)
-    isOpen = models.BooleanField(default=True)
-    date_started = models.DateField(default=date.today)
-    date_closed = models.DateField(blank=True, null=True)
+# class ReferralTemp2(models.Model):
+#     referral_id = models.BigAutoField(primary_key=True)
+#     patient = models.ForeignKey(Patient, on_delete=models.RESTRICT)
+#     referrer = models.CharField(max_length=20)
+#     referrer_email = models.CharField(max_length=50)
+#     reason = models.TextField()
+#     stage = models.CharField(max_length=2, choices=ReferralStage.choices, default=ReferralStage.PENDING)
+#     isOpen = models.BooleanField(default=True)
+#     date_started = models.DateField(default=date.today)
+#     date_closed = models.DateField(blank=True, null=True)
 
-    def __str__(self):
-        return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
+#     def __str__(self):
+#         return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
