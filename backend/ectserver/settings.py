@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'ectUser',
     'patient',
     'referral',
-    'progress_notes'
+    'progress_notes',
+
+    'django_extensions'
 ]
 
 MIDDLEWARE = [

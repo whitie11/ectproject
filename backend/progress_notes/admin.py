@@ -3,7 +3,8 @@ from .models import ProgressNote
 
 
 class ProgressNoteAdmin(admin.ModelAdmin):
-    pass
+    fields = ['referral', 'author', 'note', 'date_created']
+    readonly_fields = ['date_created']
 
 
 admin.site.register(ProgressNote, ProgressNoteAdmin)

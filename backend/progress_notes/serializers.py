@@ -22,7 +22,7 @@ class ProgressNotesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProgressNote
         fields = (
-            "notes_id",
+            "note_id",
             "note",
             "date_created",
             "referral_id",

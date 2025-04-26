@@ -30,7 +30,7 @@ class Referral(models.Model):
     date_closed = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.patient.first_name} {self.patient.last_name}: {ReferralStage(self.stage).label}"
+        return f"ID:{self.referral_id} Name:{self.patient.first_name} {self.patient.last_name} Stage:{ReferralStage(self.stage).label}"
 
 
 # class ReferralTemp(models.Model):
